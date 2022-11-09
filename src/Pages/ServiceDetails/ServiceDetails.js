@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
 const ServiceDetails = () => {
     const {title, img, description, price} = useLoaderData();
+    const {user} = useContext(AuthContext)
+
+    const handleReview = event => {
+        event.preventDefault();
+        const form = event.target;
+        const name = form.firstName.value ;
+        const email = user?.email || 'unregistered';
+        const message = form.message.value;
+        const phone = form.phone.value;
+    }
+
+   
     return (
         <div>
             <div className="card lg:card-side bg-base-100 shadow-xl">
@@ -16,7 +29,7 @@ const ServiceDetails = () => {
                     </div>
                 </div>
             </div>
-            <form >
+            <form onSubmit={handleReview}>
                 <div className="grid grid-cols-1 mt-6 lg:grid-cols-2 gap-4">
                     <input name="firstName" type="text" placeholder="First name" className="input input-bordered w-full " />
 
