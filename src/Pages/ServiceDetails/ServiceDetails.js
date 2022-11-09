@@ -19,6 +19,24 @@ const ServiceDetails = () => {
             name,
             message
         }
+
+        fetch('http://localhost:5000/reviews', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(review),
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    alert('Review posted successfully');
+                    form.reset();
+                }
+            })
+            .catch(err => console.error(err))
     }
 
    
