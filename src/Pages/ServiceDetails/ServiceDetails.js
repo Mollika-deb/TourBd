@@ -1,10 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import Review from './Review';
 
 const ServiceDetails = () => {
     const {title, img, description, price} = useLoaderData();
-    const {user} = useContext(AuthContext)
+    const {user} = useContext(AuthContext);
+    const [reviews, setReviews] = useState([]);
+    const {name, email, message} = reviews
+
+
+    // url = `http://localhost:5000/reviews?email=${user.email}`
+
+    useEffect(()=>{
+        fetch("http://localhost:5000/reviews")
+        .then(res => res.json())
+        .then(data => setReviews(data))
+    },[])
 
     const handleReview = event => {
         event.preventDefault();
@@ -60,8 +72,40 @@ const ServiceDetails = () => {
                     <input name="email" type="text" placeholder="Your Email" className="input input-bordered w-full " />
                 </div>
                 <textarea name="message" className="textarea textarea-secondary h-24 w-full mt-3" placeholder="your messages"></textarea>
-                <input className='btn  mb-3' type="submit" value="place your order" />
+                <input className='btn  mb-3' type="submit" value="post your review" />
             </form>
+
+            <h2 className="text-4xl">You have {reviews.length}</h2>
+            <div className="overflow-x-auto w-full">
+                <table className="table w-full">
+                  
+                    <thead>
+                        <tr>
+                            <th>
+                                <label>
+                                    <input type="checkbox" className="checkbox" />
+                                </label>
+                            </th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Review</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    
+                      {
+                            reviews.map(review =><Review
+                                key ={review._id}
+                                review={review}
+                                ></Review>)
+                      }  
+                       
+                    </tbody>
+                    
+                </table>
+            </div>
+
         </div>
     );
 };
