@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
 const Login = () => {
 
-
+    const { signIn } = useContext(AuthContext)
     const handleLogin = (event) => {
         event.preventDefault();
 
