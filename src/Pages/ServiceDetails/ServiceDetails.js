@@ -12,7 +12,13 @@ const ServiceDetails = () => {
         const name = form.firstName.value ;
         const email = user?.email || 'unregistered';
         const message = form.message.value;
-        const phone = form.phone.value;
+        
+
+        const review = {
+            email,
+            name,
+            message
+        }
     }
 
    
