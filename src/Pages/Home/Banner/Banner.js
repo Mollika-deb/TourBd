@@ -3,7 +3,7 @@ import img1 from '../../../images/banner/banner6.jpeg'
 import img2 from '../../../images/banner/banner5.webp'
 import img3 from '../../../images/banner/banner6.jpeg'
 import img4 from '../../../images/banner/banner5.webp'
-import './banner.css'
+
 import BannerItem from './BannerItem';
 
 
