@@ -1,10 +1,22 @@
 import React, { useEffect, useState } from 'react';
 
 const Review = ({review}) => {
-    const { name, email,service, serviceName,  message } = review
+    const { name, _id, email,service, serviceName,  message } = review
    
 
-    
+    const handleDelete = id =>{
+        const proceed = window.confirm('Are you sure to delete this review')
+        if(proceed){
+            fetch(`https://assignment-11-server-zeta-umber.vercel.app/reviews/${id}`,{
+                method: 'DELETE'
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
+        }
+
+    }
 
 
     return (
@@ -18,9 +30,10 @@ const Review = ({review}) => {
                 
             </div>
             <div className="card-actions mb-5 justify-center">
-                <button className="btn btn-warning">Edit Review</button>
-                <button className="btn btn-success">Delete Review</button>
+                <button  className="btn btn-warning">Edit Review</button>
+                <button onClick={()=> handleDelete(_id)} className="btn btn-success">Delete Review</button>
             </div>
+            
         </div>
 
 
