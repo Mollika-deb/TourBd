@@ -13,7 +13,7 @@ const ServiceDetails = () => {
     // url = `http://localhost:5000/reviews?email=${user.email}`
 
     useEffect(()=>{
-        fetch("http://localhost:5000/reviews")
+        fetch("https://assignment-11-server-zeta-umber.vercel.app/reviews")
         .then(res => res.json())
         .then(data => setReviews(data))
     },[])
@@ -32,7 +32,7 @@ const ServiceDetails = () => {
             message
         }
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://assignment-11-server-zeta-umber.vercel.app/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

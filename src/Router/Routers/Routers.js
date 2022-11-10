@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../Layout/Main";
 import AllServices from "../../Pages/AllServiices/AllServices";
+import Blog from "../../Pages/Blog/Blog";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import ServiceDetails from "../../Pages/ServiceDetails/ServiceDetails";
@@ -28,9 +29,13 @@ const router = createBrowserRouter([
                 element:<Signup></Signup>
             },
             {
+                path:'/blog',
+                element:<Blog></Blog>
+            },
+            {
                 path:'/servicedetails/:id',
                 element:<ServiceDetails></ServiceDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+                loader: ({ params }) => fetch(`https://assignment-11-server-zeta-umber.vercel.app/services/${params.id}`)
             }
         ]
     }
