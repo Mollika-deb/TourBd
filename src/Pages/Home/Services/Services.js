@@ -20,7 +20,7 @@ const Services = () => {
                     service={service}
                 ></ServiceItem>)
             }
-            <Link to='/allservices'> <button className="btn btn-outline btn-warning">See All</button></Link>
+            <Link to='/allservices'> <button className="btn btn-success text-white mb-4 ">See All</button></Link>
         </div>
     );
 };
