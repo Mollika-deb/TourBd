@@ -7,12 +7,12 @@ const PrivateRout = ({children}) => {
     const{user, loading} = useContext(AuthContext)
     const location = useLocation()
     if(loading){
-        return <h1 className="text5xl">Loading....</h1>
+        return <h1 className="text-5xl">Loading....</h1>
     }
-    if(user){
+    if(user && user.uid){
         return children;
     }
-    return <Navigate state={{from: location}} replace></Navigate>
+    return <Navigate to='/login' state={{from: location}} replace></Navigate>
 
     
 };
